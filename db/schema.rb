@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911073830) do
+ActiveRecord::Schema.define(version: 20150923125702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +34,12 @@ ActiveRecord::Schema.define(version: 20150911073830) do
     t.integer  "joinable_id"
     t.string   "joinable_type"
     t.integer  "user_id"
-    t.integer  "role",          default: 0
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "role",               default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "slack_uid"
+    t.string   "slack_access_token"
+    t.string   "aasm_state"
   end
 
   create_table "memberships_skills", force: :cascade do |t|
@@ -52,23 +55,20 @@ ActiveRecord::Schema.define(version: 20150911073830) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.integer  "account_id"
-    t.integer  "team_id"
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "slack_team_id",     null: false
+    t.string   "slack_team_domain", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider"
-    t.string   "uid"
     t.string   "name"
     t.string   "avatar"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "email",              null: false
-    t.string   "slack_access_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "email",      null: false
   end
 
 end

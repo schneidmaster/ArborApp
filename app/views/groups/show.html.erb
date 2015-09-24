@@ -1,0 +1,7 @@
+<div class='container'>
+  <h3><%= @groups_presenter.name %></h3>
+  <div id='join-group'>
+    <%= @groups_presenter.join_button_or_application_status self %>
+  </div>
+  <%= @groups_presenter.create_sub_group_button self %>
+</div>
